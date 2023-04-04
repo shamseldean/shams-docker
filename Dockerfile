@@ -1,8 +1,14 @@
-FROM node:14 as base
-FROM base as development
+# FROM node:14 as base
+# FROM base as development
+FROM node:14
 WORKDIR /app
 COPY package.json .
-RUN npm install 
+ARG NODE_ENV
+RUN if ["NODE_ENV"="development"];\
+    then npm install;\
+    else npm istall --only=production; \
+    fi
+
 COPY . .
 EXPOSE 4000
 CMD [ "npm","run","start-dev" ]
