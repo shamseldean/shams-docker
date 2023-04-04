@@ -3,16 +3,16 @@ services:
   node-app:
     container_name: express-node-app-container
     image : mshams1/shams-docker
-    # deploy:
-    # replicas: 4
-    # update_config:
-    #   parallelism: 2
-    #   delay: 10s
-    # restart_policy:
-    #   condition: on-failure
-    #   delay: 5s
-    # ports:
-      # - "4000:4000"
+    deploy:
+    replicas: 4
+    update_config:
+      parallelism: 2
+      delay: 10s
+    restart_policy:
+      condition: on-failure
+      delay: 5s
+    ports:
+      - "4000:4000"
     env_file:
       - ./.env
     depends_on:
