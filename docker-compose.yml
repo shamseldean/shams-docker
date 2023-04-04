@@ -2,12 +2,13 @@ version: '3'
 services:
   node-app:
     container_name: express-node-app-container
+    image : docker push mshams1/shams-docker
     ports:
       - "4000:4000"
     env_file:
       - ./.env
     depends_on:
-      # - postgres
+      - mongo
       - redis
   # postgres:
   #   image: postgres
