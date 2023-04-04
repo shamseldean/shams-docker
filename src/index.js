@@ -2,6 +2,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const redis =require('redis')
+const os =require('os') ;
 //const { Client } = require('pg')
 // init app
 const PORT = process.env.PORT || 4000;
@@ -31,10 +32,11 @@ redisClient.connect();
 
 app.get('/', (req, res) =>{
     redisClient.set('products','Shams international');
+    console.log(`traffic from ${os.hostname}`)
     res.send("<hl> Hello Shams  i'm so proud of you<hl>")});
 app.get('/data', async (req, res) =>{
     const products = await redisClient.get('products');
-    res.send(`<hl> Hello Shams  i'm so proud of you<hl> <h2>${products}<h2>`);
+    res.send(`<hl> Hello Shams  i'm so proud of you keep it  <hl> <h2>${products}<h2>`);
 });
 app.listen(PORT, () => console.log(`app 15 up and running on port:,${PORT}`));
 
