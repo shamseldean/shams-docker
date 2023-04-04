@@ -18,6 +18,14 @@ mongoose
     .connect(URL)
     .then(()=> console.log("connected to db..."))
     .catch((err)=> console.log("fail connection to db",err));
+// connect to redis 
+const REDIS_PORT= '6379';
+const REDIS_HOST= 'redis';
+const URL1={url: `redis://${REDIS_HOST}:${REDIS_PORT}`} ;
+const redisClient = redis.createClient(URL1);
+redisClient.on('error',(err) => console.log('redis client error',err));
+redisClient.on('connect',() => console.log('connected to redis.....'));
+redisClient.connect();
 
 // connect to redis 
 const REDIS_PORT= '6379';
